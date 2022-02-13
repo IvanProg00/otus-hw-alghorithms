@@ -14,9 +14,9 @@ func TestCountNumSum(t *testing.T) {
 	}{
 		{decimals: 1, expected: 10},
 		{decimals: 2, expected: 670},
-		// {decimals: 3, expected: 55252},
-		// {decimals: 4, expected: 4816030},
-		// {decimals: 5, expected: 432457640},
+		{decimals: 3, expected: 55252},
+		{decimals: 4, expected: 4816030},
+		{decimals: 5, expected: 432457640},
 		// {decimals: 6, expected: 39581170420},
 		// {decimals: 7, expected: 3671331273480},
 		// {decimals: 8, expected: 343900019857310},
