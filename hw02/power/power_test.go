@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestIterPower(t *testing.T) {
+func TestPowerIter(t *testing.T) {
 	const roundUntil = 100000000000
 	tests := []struct {
 		x        float64
@@ -31,7 +31,7 @@ func TestIterPower(t *testing.T) {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			require := require.New(t)
 
-			res := IterPower(tt.x, tt.y)
+			res := PowerIter(tt.x, tt.y)
 			res = math.Round(res*roundUntil) / roundUntil
 			require.Equal(tt.expected, res)
 		})
