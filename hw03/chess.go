@@ -14,7 +14,7 @@ func King(pos uint64) (int, uint64) {
 		posRightSide>>1 | posLeftSide<<1 |
 		posRightSide>>9 | pos>>8 | posLeftSide>>7
 
-	return CountMoves(mask), mask
+	return CountMoves1(mask), mask
 }
 
 func Horse(pos uint64) (int, uint64) {
@@ -35,15 +35,28 @@ func Horse(pos uint64) (int, uint64) {
 		posRightSideTwo>>10 | posLeftSideTwo>>6 |
 		posRightSideOne>>17 | posLeftSideOne>>15
 
-	return CountMoves(mask), mask
+	return CountMoves2(mask), mask
 }
 
-func CountMoves(mask uint64) int {
+func CountMoves1(mask uint64) int {
 	moves := 0
 
 	for mask > 0 {
 		mask &= mask - 1
 		moves++
+	}
+
+	return moves
+}
+
+func CountMoves2(mask uint64) int {
+	moves := 0
+
+	for mask > 0 {
+		if mask&1 == 1 {
+			moves++
+		}
+		mask >>= 1
 	}
 
 	return moves
