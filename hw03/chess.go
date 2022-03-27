@@ -1,7 +1,5 @@
 package chess
 
-import "fmt"
-
 func King(pos uint64) (int, uint64) {
 	const leftSide uint64 = 0x7f7f7f7f7f7f7f7f
 	const rightSide uint64 = 0xfefefefefefefefe
@@ -28,7 +26,6 @@ func Horse(pos uint64) (int, uint64) {
 	var posLeftSideTwo uint64 = pos & leftSideTwo
 	var posRightSideOne uint64 = pos & rightSideOne
 	var posRightSideTwo uint64 = pos & rightSideTwo
-	fmt.Println(posLeftSideOne, posLeftSideTwo)
 
 	mask := posRightSideOne<<15 | posLeftSideOne<<17 |
 		posRightSideTwo<<6 | posLeftSideTwo<<10 |
