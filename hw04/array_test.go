@@ -40,6 +40,13 @@ func TestSize(t *testing.T) {
 			}
 			vectorRes := vectorArr.Size()
 			require.Equal(tt.expected, vectorRes)
+
+			factorArr := NewFactorArray[int]()
+			for _, val := range tt.arr {
+				factorArr.Put(val)
+			}
+			factorRes := factorArr.Size()
+			require.Equal(tt.expected, factorRes)
 		})
 	}
 }
@@ -77,6 +84,13 @@ func TestIsEmpty(t *testing.T) {
 			}
 			vectorRes := vectorArr.IsEmpty()
 			require.Equal(tt.expected, vectorRes)
+
+			factorArr := NewFactorArray[int]()
+			for _, val := range tt.arr {
+				factorArr.Put(val)
+			}
+			factorRes := factorArr.IsEmpty()
+			require.Equal(tt.expected, factorRes)
 		})
 	}
 }
@@ -148,6 +162,13 @@ func TestGet(t *testing.T) {
 			}
 			vectorRes := vectorArr.Get(tt.index)
 			require.Equal(tt.expected, vectorRes)
+
+			factorArr := NewFactorArray[int]()
+			for _, val := range tt.arr {
+				factorArr.Put(val)
+			}
+			factorRes := factorArr.Get(tt.index)
+			require.Equal(tt.expected, factorRes)
 		})
 	}
 }
@@ -194,6 +215,13 @@ func TestPut(t *testing.T) {
 			}
 			vectorArr.Put(tt.val)
 			require.Equal(tt.expected, vectorArr.arr[:vectorArr.Size()])
+
+			factorArr := FactorArray[int]{}
+			for _, val := range tt.arr {
+				factorArr.Put(val)
+			}
+			factorArr.Put(tt.val)
+			require.Equal(tt.expected, factorArr.arr[:factorArr.Size()])
 		})
 	}
 }
