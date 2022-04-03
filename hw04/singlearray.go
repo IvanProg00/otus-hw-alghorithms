@@ -9,7 +9,7 @@ func (a *SingleArray[T]) Size() int {
 }
 
 func (a *SingleArray[T]) IsEmpty() bool {
-	return len(a.arr) <= 0
+	return a.Size() <= 0
 }
 
 func (a *SingleArray[T]) resize() {
