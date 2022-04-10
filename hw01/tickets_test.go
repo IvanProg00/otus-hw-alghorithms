@@ -25,7 +25,7 @@ func TestCountNumSum(t *testing.T) {
 	}
 
 	for i, tt := range tests {
-		t.Run(fmt.Sprintf("test_%d", i), func(t *testing.T) {
+		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			res := CountNumSum(tt.decimals)
 			require.Equal(t, tt.expected, res)
 		})
