@@ -36,7 +36,8 @@ func TestBubbleSort(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
-			require.EqualValues(t, tt.expected, BubbleSort(tt.val))
+			BubbleSort(tt.val)
+			require.EqualValues(t, tt.expected, tt.val)
 		})
 	}
 }
@@ -70,7 +71,8 @@ func TestInsertionSort(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
-			require.EqualValues(t, tt.expected, InsertionSort(tt.val))
+			InsertionSort(tt.val)
+			require.EqualValues(t, tt.expected, tt.val)
 		})
 	}
 }

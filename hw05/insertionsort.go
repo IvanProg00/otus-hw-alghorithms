@@ -1,6 +1,6 @@
 package sort
 
-func InsertionSort(arr []int) []int {
+func InsertionSort(arr []int) {
 	for i := 1; i < len(arr); i++ {
 		k := i
 
@@ -9,6 +9,4 @@ func InsertionSort(arr []int) []int {
 			k--
 		}
 	}
-
-	return arr
 }
