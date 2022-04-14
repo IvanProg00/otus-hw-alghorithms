@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+var SliseSizes = []int{100, 1_000, 10_000}
+
 func randomSlice(size int) []int {
 	arr := make([]int, size)
 
@@ -16,8 +18,6 @@ func randomSlice(size int) []int {
 
 	return arr
 }
-
-var SliseSizes = []int{100, 1_000, 10_000}
 
 // BenchmarkBubbleSort/slize-size-100-8              123969              9084 ns/op               0 B/op          0 allocs/op
 // BenchmarkBubbleSort/slize-size-1000-8               3310            360824 ns/op               0 B/op          0 allocs/op
