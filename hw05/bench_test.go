@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var SliseSizes = []int{100, 1_000, 10_000, 100_000, 1_000_000}
+var SliseSizes = []int{100, 1_000, 10_000, 100_000}
 
 func randomSlice(size int) []int {
 	arr := make([]int, size)
