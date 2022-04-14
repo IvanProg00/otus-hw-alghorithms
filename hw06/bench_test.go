@@ -40,11 +40,11 @@ func BenchmarkSelectionSort(b *testing.B) {
 	}
 }
 
-// BenchmarkHeapSort/slize-size-100-8                303670              3679 ns/op               0 B/op          0 allocs/op
-// BenchmarkHeapSort/slize-size-1000-8                21429             55958 ns/op               0 B/op          0 allocs/op
-// BenchmarkHeapSort/slize-size-10000-8                1706            695655 ns/op               0 B/op          0 allocs/op
-// BenchmarkHeapSort/slize-size-100000-8                133           8954361 ns/op               0 B/op          0 allocs/op
-// BenchmarkHeapSort/slize-size-1000000-8                 9         113165870 ns/op               0 B/op          0 allocs/op
+// BenchmarkHeapSort/slize-size-100-8                        303670              3679 ns/op               0 B/op          0 allocs/op
+// BenchmarkHeapSort/slize-size-1000-8                        21429             55958 ns/op               0 B/op          0 allocs/op
+// BenchmarkHeapSort/slize-size-10000-8                        1706            695655 ns/op               0 B/op          0 allocs/op
+// BenchmarkHeapSort/slize-size-100000-8                        133           8954361 ns/op               0 B/op          0 allocs/op
+// BenchmarkHeapSort/slize-size-1000000-8                         9         113165870 ns/op               0 B/op          0 allocs/op
 func BenchmarkHeapSort(b *testing.B) {
 	rand.Seed(time.Now().Unix())
 	b.ResetTimer()
