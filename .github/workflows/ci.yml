@@ -9,20 +9,28 @@ env:
   GO111MODULE: "on"
 
 jobs:
-  lint:
+  lint_go:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract branch name
-        run: echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Linters
+      - name: Go Linter
         uses: golangci/golangci-lint-action@v3
         with:
           version: v1.45
           working-directory: ${{ env.BRANCH }}
+
+  lint_markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Markdown Linter
+        uses: avto-dev/markdown-lint@v1
+        with:
+          args: "."
 
   tests:
     runs-on: ubuntu-latest
