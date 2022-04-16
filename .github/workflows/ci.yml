@@ -1,9 +1,9 @@
 name: Tests
 
-on:
-  push:
-    branches:
-      - hw*
+on: [push]
+  # push:
+    # branches:
+    #   - hw*
 
 env:
   GO111MODULE: "on"
