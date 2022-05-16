@@ -8,6 +8,8 @@ import (
 )
 
 func TestKing(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		pos         uint64
 		expNumMoves int
@@ -26,7 +28,9 @@ func TestKing(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 			numMoves, mask := King(tt.pos)
 
@@ -37,6 +41,8 @@ func TestKing(t *testing.T) {
 }
 
 func TestHorse(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		pos         uint64
 		expNumMoves int
@@ -55,7 +61,9 @@ func TestHorse(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 			numMoves, mask := Horse(tt.pos)
 

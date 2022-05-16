@@ -8,6 +8,8 @@ import (
 )
 
 func TestBubbleSort(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -43,7 +45,10 @@ func TestBubbleSort(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
+
 			BubbleSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
@@ -51,6 +56,8 @@ func TestBubbleSort(t *testing.T) {
 }
 
 func TestInsertionSort(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -86,7 +93,10 @@ func TestInsertionSort(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
+
 			InsertionSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
@@ -94,6 +104,8 @@ func TestInsertionSort(t *testing.T) {
 }
 
 func TestShellSort(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -129,7 +141,10 @@ func TestShellSort(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
+
 			ShellSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})

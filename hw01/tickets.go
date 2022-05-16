@@ -9,6 +9,7 @@ func counterNumSum(decimals, sumA, sumB, count int) int {
 		if sumA == sumB {
 			count++
 		}
+
 		return count
 	}
 

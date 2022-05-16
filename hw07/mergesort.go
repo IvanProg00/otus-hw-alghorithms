@@ -25,12 +25,16 @@ func merge(arr []int, first, last, mid int) {
 	for i := 0; i < n1; i++ {
 		l = append(l, arr[first+i])
 	}
+
 	for i := 0; i < n2; i++ {
 		r = append(r, arr[mid+1+i])
 	}
 
-	var i int
-	var j int
+	var (
+		i int
+		j int
+	)
+
 	k := first
 
 	for i < n1 && j < n2 {

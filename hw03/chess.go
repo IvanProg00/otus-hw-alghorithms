@@ -1,12 +1,15 @@
 package chess
 
 func King(pos uint64) (int, uint64) {
-	const leftSide uint64 = 0x7f7f7f7f7f7f7f7f
-	const rightSide uint64 = 0xfefefefefefefefe
+	const (
+		leftSide  uint64 = 0x7f7f7f7f7f7f7f7f
+		rightSide uint64 = 0xfefefefefefefefe
+	)
+
 	pos = 1 << pos
 
-	var posLeftSide uint64 = pos & leftSide
-	var posRightSide uint64 = pos & rightSide
+	posLeftSide := pos & leftSide
+	posRightSide := pos & rightSide
 
 	mask := posRightSide<<7 | pos<<8 | posLeftSide<<9 |
 		posRightSide>>1 | posLeftSide<<1 |
@@ -16,16 +19,18 @@ func King(pos uint64) (int, uint64) {
 }
 
 func Horse(pos uint64) (int, uint64) {
-	const leftSideOne uint64 = 0x7f7f7f7f7f7f7f7f
-	const leftSideTwo uint64 = 0x3f3f3f3f3f3f3f3f
-	const rightSideOne uint64 = 0xfefefefefefefefe
-	const rightSideTwo uint64 = 0xfcfcfcfcfcfcfcfc
-	pos = 1 << pos
+	const (
+		leftSideOne  uint64 = 0x7f7f7f7f7f7f7f7f
+		leftSideTwo  uint64 = 0x3f3f3f3f3f3f3f3f
+		rightSideOne uint64 = 0xfefefefefefefefe
+		rightSideTwo uint64 = 0xfcfcfcfcfcfcfcfc
+	)
 
-	var posLeftSideOne uint64 = pos & leftSideOne
-	var posLeftSideTwo uint64 = pos & leftSideTwo
-	var posRightSideOne uint64 = pos & rightSideOne
-	var posRightSideTwo uint64 = pos & rightSideTwo
+	pos = 1 << pos
+	posLeftSideOne := pos & leftSideOne
+	posLeftSideTwo := pos & leftSideTwo
+	posRightSideOne := pos & rightSideOne
+	posRightSideTwo := pos & rightSideTwo
 
 	mask := posRightSideOne<<15 | posLeftSideOne<<17 |
 		posRightSideTwo<<6 | posLeftSideTwo<<10 |
@@ -53,6 +58,7 @@ func CountMoves2(mask uint64) int {
 		if mask&1 == 1 {
 			moves++
 		}
+
 		mask >>= 1
 	}
 

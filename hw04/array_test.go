@@ -8,6 +8,8 @@ import (
 )
 
 func TestSize(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		arr      []int
 		expected int
@@ -27,7 +29,9 @@ func TestSize(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
@@ -52,6 +56,8 @@ func TestSize(t *testing.T) {
 }
 
 func TestIsEmpty(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		arr      []int
 		expected bool
@@ -71,7 +77,9 @@ func TestIsEmpty(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
@@ -96,6 +104,8 @@ func TestIsEmpty(t *testing.T) {
 }
 
 func TestResize(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		arr      []int
 		expected []int
@@ -115,7 +125,9 @@ func TestResize(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
@@ -126,6 +138,8 @@ func TestResize(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		arr      []int
 		index    int
@@ -149,7 +163,9 @@ func TestGet(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
@@ -174,10 +190,12 @@ func TestGet(t *testing.T) {
 }
 
 func TestPut(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		arr      []int
-		val      int
 		expected []int
+		val      int
 	}{
 		{
 			arr:      []int{},
@@ -202,7 +220,9 @@ func TestPut(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}

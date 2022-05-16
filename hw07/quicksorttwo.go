@@ -24,5 +24,6 @@ func partitionTwo(arr []int, first, last int) int {
 	}
 
 	arr[first], arr[last] = arr[last], arr[first]
+
 	return first
 }

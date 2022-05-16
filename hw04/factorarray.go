@@ -22,9 +22,7 @@ func (a *FactorArray[T]) IsEmpty() bool {
 func (a *FactorArray[T]) resize() {
 	arr := make([]T, a.Size()*factor+1)
 
-	for i, v := range a.arr {
-		arr[i] = v
-	}
+	copy(arr, a.arr)
 
 	a.arr = arr
 }
@@ -37,6 +35,7 @@ func (a *FactorArray[T]) Put(item T) {
 	if a.Size() == len(a.arr) {
 		a.resize()
 	}
+
 	a.arr[a.Size()] = item
 	a.size++
 }

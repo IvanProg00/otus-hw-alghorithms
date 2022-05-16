@@ -8,6 +8,8 @@ import (
 )
 
 func TestSelectionSort(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -39,7 +41,9 @@ func TestSelectionSort(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			SelectionSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
@@ -47,6 +51,8 @@ func TestSelectionSort(t *testing.T) {
 }
 
 func TestHeapSort(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -78,7 +84,9 @@ func TestHeapSort(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			HeapSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})

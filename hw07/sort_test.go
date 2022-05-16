@@ -8,6 +8,8 @@ import (
 )
 
 func TestQuickSortOne(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -43,7 +45,9 @@ func TestQuickSortOne(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			QuickSortOne(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
@@ -51,6 +55,8 @@ func TestQuickSortOne(t *testing.T) {
 }
 
 func TestQuickSortTwo(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -86,7 +92,9 @@ func TestQuickSortTwo(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			QuickSortTwo(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
@@ -94,6 +102,8 @@ func TestQuickSortTwo(t *testing.T) {
 }
 
 func TestMergeSort(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		val      []int
 		expected []int
@@ -129,7 +139,9 @@ func TestMergeSort(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			MergeSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
