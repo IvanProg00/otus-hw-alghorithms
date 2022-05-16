@@ -1,36 +1,42 @@
 package sort
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
+	"math/big"
 	"testing"
-	"time"
+
+	"github.com/stretchr/testify/require"
 )
-
-func randomSlice(size int) []int {
-	arr := make([]int, size)
-
-	for i := range arr {
-		arr[i] = rand.Int()
-	}
-
-	return arr
-}
 
 var SliseSizes = []int{100, 1_000, 10_000}
 
-// BenchmarkBubbleSort/slize-size-100-8              123969              9084 ns/op               0 B/op          0 allocs/op
-// BenchmarkBubbleSort/slize-size-1000-8               3310            360824 ns/op               0 B/op          0 allocs/op
-// BenchmarkBubbleSort/slize-size-10000-8                33          34879076 ns/op               0 B/op          0 allocs/op
+func randomSlice(size int) ([]int, error) {
+	arr := make([]int, size)
+
+	for i := range arr {
+		n, err := rand.Int(rand.Reader, big.NewInt(1_000_000))
+		if err != nil {
+			return []int{}, fmt.Errorf("error get random int: %w", err)
+		}
+
+		arr[i] = int(n.Int64())
+	}
+
+	return arr, nil
+}
+
 func BenchmarkBubbleSort(b *testing.B) {
-	rand.Seed(time.Now().Unix())
 	b.ResetTimer()
 
 	for _, v := range SliseSizes {
 		b.Run(fmt.Sprintf("slize-size-%d", v), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				arr := randomSlice(v)
+				arr, err := randomSlice(v)
+				if err != nil {
+					require.NoError(b, err)
+				}
 				b.StartTimer()
 
 				BubbleSort(arr)
@@ -39,18 +45,15 @@ func BenchmarkBubbleSort(b *testing.B) {
 	}
 }
 
-// BenchmarkInsertionSort/slize-size-100-8           263697              4553 ns/op               0 B/op          0 allocs/op
-// BenchmarkInsertionSort/slize-size-1000-8            3189            373437 ns/op               0 B/op          0 allocs/op
-// BenchmarkInsertionSort/slize-size-10000-8             33          35351353 ns/op               0 B/op          0 allocs/op
 func BenchmarkInsertionSort(b *testing.B) {
-	rand.Seed(time.Now().Unix())
 	b.ResetTimer()
 
 	for _, v := range SliseSizes {
 		b.Run(fmt.Sprintf("slize-size-%d", v), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				arr := randomSlice(v)
+				arr, err := randomSlice(v)
+				require.NoError(b, err)
 				b.StartTimer()
 
 				InsertionSort(arr)
@@ -59,18 +62,15 @@ func BenchmarkInsertionSort(b *testing.B) {
 	}
 }
 
-// BenchmarkShellSort/slize-size-100-8               412507              2903 ns/op               0 B/op          0 allocs/op
-// BenchmarkShellSort/slize-size-1000-8               22502             53263 ns/op               0 B/op          0 allocs/op
-// BenchmarkShellSort/slize-size-10000-8               1672            718508 ns/op               0 B/op          0 allocs/op
 func BenchmarkShellSort(b *testing.B) {
-	rand.Seed(time.Now().Unix())
 	b.ResetTimer()
 
 	for _, v := range SliseSizes {
 		b.Run(fmt.Sprintf("slize-size-%d", v), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				arr := randomSlice(v)
+				arr, err := randomSlice(v)
+				require.NoError(b, err)
 				b.StartTimer()
 
 				ShellSort(arr)

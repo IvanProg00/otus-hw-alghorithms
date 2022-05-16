@@ -8,8 +8,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestPowerIter(t *testing.T) {
+func TestIter(t *testing.T) {
+	t.Parallel()
+
 	const roundUntil = 100000000000
+
 	tests := []struct {
 		x        float64
 		y        int
@@ -29,9 +32,10 @@ func TestPowerIter(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
-			res := PowerIter(tt.x, tt.y)
+			res := Iter(tt.x, tt.y)
 			res = math.Round(res*roundUntil) / roundUntil
 			require.Equal(tt.expected, res)
 		})

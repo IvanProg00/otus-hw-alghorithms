@@ -15,9 +15,7 @@ func (a *SingleArray[T]) IsEmpty() bool {
 func (a *SingleArray[T]) resize() {
 	arr := make([]T, a.Size()+1)
 
-	for i, v := range a.arr {
-		arr[i] = v
-	}
+	copy(arr, a.arr)
 
 	a.arr = arr
 }

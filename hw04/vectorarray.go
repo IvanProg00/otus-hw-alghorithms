@@ -23,9 +23,7 @@ func (a *VectorArray[T]) IsEmpty() bool {
 func (a *VectorArray[T]) resize() {
 	arr := make([]T, a.Size()+a.vector)
 
-	for i, v := range a.arr {
-		arr[i] = v
-	}
+	copy(arr, a.arr)
 
 	a.arr = arr
 }
@@ -38,6 +36,7 @@ func (a *VectorArray[T]) Put(item T) {
 	if a.Size() == len(a.arr) {
 		a.resize()
 	}
+
 	a.arr[a.Size()] = item
 	a.size++
 }

@@ -38,7 +38,9 @@ linters:
     - ifshort
     - makezero
     - tenv
-    - gocritic
+    # Currently receiving error:
+    # Running error: 1 error occurred:\n\t* can't run linter goanalysis_metalinter: goanalysis_metalinter: gocritic: package \"array\" (isInitialPkg: true, needAnalyzeSource: true): assertion failed
+    # - gocritic
     - prealloc
     - misspell
     - nosprintfhostport

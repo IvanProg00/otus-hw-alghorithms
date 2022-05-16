@@ -8,6 +8,8 @@ import (
 )
 
 func TestCountNumSum(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		decimals int
 		expected int
@@ -25,7 +27,10 @@ func TestCountNumSum(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
+
 			res := CountNumSum(tt.decimals)
 			require.Equal(t, tt.expected, res)
 		})

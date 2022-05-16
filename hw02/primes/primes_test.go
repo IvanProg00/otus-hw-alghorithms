@@ -7,7 +7,9 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestPrimes1(t *testing.T) {
+func TestPrimes(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		n        int
 		expected int
@@ -30,10 +32,12 @@ func TestPrimes1(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
 			require := require.New(t)
 
-			require.Equal(tt.expected, Primes1(tt.n))
+			require.Equal(tt.expected, Primes(tt.n))
 		})
 	}
 }
