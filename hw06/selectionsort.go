@@ -8,6 +8,7 @@ func SelectionSort(arr []int) {
 				min = k
 			}
 		}
+
 		arr[i], arr[min] = arr[min], arr[i]
 	}
 }

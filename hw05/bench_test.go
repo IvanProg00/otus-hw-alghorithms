@@ -1,30 +1,14 @@
 package sort
 
 import (
-	"crypto/rand"
 	"fmt"
-	"math/big"
 	"testing"
 
+	"github.com/IvanProg00/otus-hw-algorithms/utils"
 	"github.com/stretchr/testify/require"
 )
 
 var SliseSizes = []int{100, 1_000, 10_000, 100_000}
-
-func randomSlice(size int) ([]int, error) {
-	arr := make([]int, size)
-
-	for i := range arr {
-		n, err := rand.Int(rand.Reader, big.NewInt(1_000_000))
-		if err != nil {
-			return []int{}, fmt.Errorf("error get random int: %w", err)
-		}
-
-		arr[i] = int(n.Int64())
-	}
-
-	return arr, nil
-}
 
 func BenchmarkBubbleSort(b *testing.B) {
 	b.ResetTimer()
@@ -33,7 +17,7 @@ func BenchmarkBubbleSort(b *testing.B) {
 		b.Run(fmt.Sprintf("slize-size-%d", v), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				arr, err := randomSlice(v)
+				arr, err := utils.RandomSlice(v)
 				if err != nil {
 					require.NoError(b, err)
 				}
@@ -52,7 +36,7 @@ func BenchmarkInsertionSort(b *testing.B) {
 		b.Run(fmt.Sprintf("slize-size-%d", v), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				arr, err := randomSlice(v)
+				arr, err := utils.RandomSlice(v)
 				require.NoError(b, err)
 				b.StartTimer()
 
@@ -69,7 +53,7 @@ func BenchmarkShellSort(b *testing.B) {
 		b.Run(fmt.Sprintf("slize-size-%d", v), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				arr, err := randomSlice(v)
+				arr, err := utils.RandomSlice(v)
 				require.NoError(b, err)
 				b.StartTimer()
 

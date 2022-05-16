@@ -19,6 +19,7 @@ func moveToRoot(arr []int, root, size int) {
 	if l < size && arr[l] > arr[x] {
 		x = l
 	}
+
 	if r < size && arr[r] > arr[x] {
 		x = r
 	}
