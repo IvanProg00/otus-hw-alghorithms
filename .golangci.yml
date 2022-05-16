@@ -1,0 +1,76 @@
+run:
+  allow-parallel-runners: true
+
+linters:
+  disable-all: true
+  enable:
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - varcheck
+    - errcheck
+    - bodyclose
+    - gosec
+    - errorlint
+    - errname
+    - unconvert
+    - unparam
+    - wsl
+    - gofmt
+    - stylecheck
+    - gocognit
+    - gocyclo
+    - deadcode
+    - unused
+    - goerr113
+    - lll
+    - paralleltest
+    - wastedassign
+    - contextcheck
+    - decorder
+    - forcetypeassert
+    - goconst
+    - gofumpt
+    - grouper
+    - ifshort
+    - makezero
+    - tenv
+    - gocritic
+    - prealloc
+    - misspell
+    - nosprintfhostport
+    - revive
+    - wrapcheck
+    - sqlclosecheck
+    - noctx
+    - nilerr
+
+linters-settings:
+  govet:
+    enable-all: true
+  wsl:
+    allow-trailing-comment: true
+  decorder:
+    disable-dec-order-check: false
+    disable-init-func-first-check: false
+  lll:
+    line-length: 120
+  gocritic:
+    enabled-tags:
+      - performance
+      - diagnostic
+      - style
+      - opinionated
+    disabled-tags:
+      - experimental
+    disabled-checks:
+      - hugeParam
+
+issues:
+  exclude-rules:
+    - linters:
+        - paralleltest
+      text: "does not use range value in test Run"
