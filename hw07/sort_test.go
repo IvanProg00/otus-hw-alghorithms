@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestBubbleSort(t *testing.T) {
+func TestQuickSortOne(t *testing.T) {
 	tests := []struct {
 		val      []int
 		expected []int
@@ -44,13 +44,13 @@ func TestBubbleSort(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
-			BubbleSort(tt.val)
+			QuickSortOne(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
 	}
 }
 
-func TestInsertionSort(t *testing.T) {
+func TestQuickSortTwo(t *testing.T) {
 	tests := []struct {
 		val      []int
 		expected []int
@@ -87,13 +87,13 @@ func TestInsertionSort(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
-			InsertionSort(tt.val)
+			QuickSortTwo(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
 	}
 }
 
-func TestShellSort(t *testing.T) {
+func TestMergeSort(t *testing.T) {
 	tests := []struct {
 		val      []int
 		expected []int
@@ -130,7 +130,7 @@ func TestShellSort(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
-			ShellSort(tt.val)
+			MergeSort(tt.val)
 			require.EqualValues(t, tt.expected, tt.val)
 		})
 	}
