@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var SliseSizes = []int{100, 1_000, 10_000}
+var SliseSizes = []int{100, 1_000, 10_000, 100_000}
 
 func randomSlice(size int) ([]int, error) {
 	arr := make([]int, size)
