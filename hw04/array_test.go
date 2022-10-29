@@ -32,25 +32,24 @@ func TestSize(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
 			singleRes := singleArr.Size()
-			require.Equal(tt.expected, singleRes)
+			require.Equal(t, tt.expected, singleRes)
 
 			vectorArr := NewVectorArray[int](5)
 			for _, val := range tt.arr {
 				vectorArr.Put(val)
 			}
 			vectorRes := vectorArr.Size()
-			require.Equal(tt.expected, vectorRes)
+			require.Equal(t, tt.expected, vectorRes)
 
 			factorArr := NewFactorArray[int]()
 			for _, val := range tt.arr {
 				factorArr.Put(val)
 			}
 			factorRes := factorArr.Size()
-			require.Equal(tt.expected, factorRes)
+			require.Equal(t, tt.expected, factorRes)
 		})
 	}
 }
@@ -80,25 +79,24 @@ func TestIsEmpty(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
 			singleRes := singleArr.IsEmpty()
-			require.Equal(tt.expected, singleRes)
+			require.Equal(t, tt.expected, singleRes)
 
 			vectorArr := NewVectorArray[int](5)
 			for _, val := range tt.arr {
 				vectorArr.Put(val)
 			}
 			vectorRes := vectorArr.IsEmpty()
-			require.Equal(tt.expected, vectorRes)
+			require.Equal(t, tt.expected, vectorRes)
 
 			factorArr := NewFactorArray[int]()
 			for _, val := range tt.arr {
 				factorArr.Put(val)
 			}
 			factorRes := factorArr.IsEmpty()
-			require.Equal(tt.expected, factorRes)
+			require.Equal(t, tt.expected, factorRes)
 		})
 	}
 }
@@ -128,11 +126,10 @@ func TestResize(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
 			singleArr.resize()
-			require.Equal(SingleArray[int]{tt.expected}, singleArr)
+			require.Equal(t, SingleArray[int]{tt.expected}, singleArr)
 		})
 	}
 }
@@ -166,25 +163,24 @@ func TestGet(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
 			singleRes := singleArr.Get(tt.index)
-			require.Equal(tt.expected, singleRes)
+			require.Equal(t, tt.expected, singleRes)
 
 			vectorArr := NewVectorArray[int](5)
 			for _, val := range tt.arr {
 				vectorArr.Put(val)
 			}
 			vectorRes := vectorArr.Get(tt.index)
-			require.Equal(tt.expected, vectorRes)
+			require.Equal(t, tt.expected, vectorRes)
 
 			factorArr := NewFactorArray[int]()
 			for _, val := range tt.arr {
 				factorArr.Put(val)
 			}
 			factorRes := factorArr.Get(tt.index)
-			require.Equal(tt.expected, factorRes)
+			require.Equal(t, tt.expected, factorRes)
 		})
 	}
 }
@@ -223,25 +219,24 @@ func TestPut(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
 			singleArr := SingleArray[int]{tt.arr}
 			singleArr.Put(tt.val)
-			require.EqualValues(tt.expected, singleArr.arr)
+			require.EqualValues(t, tt.expected, singleArr.arr)
 
 			vectorArr := VectorArray[int]{vector: 5}
 			for _, val := range tt.arr {
 				vectorArr.Put(val)
 			}
 			vectorArr.Put(tt.val)
-			require.Equal(tt.expected, vectorArr.arr[:vectorArr.Size()])
+			require.Equal(t, tt.expected, vectorArr.arr[:vectorArr.Size()])
 
 			factorArr := FactorArray[int]{}
 			for _, val := range tt.arr {
 				factorArr.Put(val)
 			}
 			factorArr.Put(tt.val)
-			require.Equal(tt.expected, factorArr.arr[:factorArr.Size()])
+			require.Equal(t, tt.expected, factorArr.arr[:factorArr.Size()])
 		})
 	}
 }

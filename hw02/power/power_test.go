@@ -31,13 +31,13 @@ func TestIter(t *testing.T) {
 	}
 
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
 			res := Iter(tt.x, tt.y)
 			res = math.Round(res*roundUntil) / roundUntil
-			require.Equal(tt.expected, res)
+			require.Equal(t, tt.expected, res)
 		})
 	}
 }

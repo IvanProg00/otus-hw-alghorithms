@@ -31,11 +31,10 @@ func TestKing(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 			numMoves, mask := King(tt.pos)
 
-			require.Equal(tt.expMask, mask)
-			require.Equal(tt.expNumMoves, numMoves)
+			require.Equal(t, tt.expMask, mask)
+			require.Equal(t, tt.expNumMoves, numMoves)
 		})
 	}
 }
@@ -64,11 +63,10 @@ func TestHorse(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 			numMoves, mask := Horse(tt.pos)
 
-			require.Equal(tt.expMask, mask)
-			require.Equal(tt.expNumMoves, numMoves)
+			require.Equal(t, tt.expMask, mask)
+			require.Equal(t, tt.expNumMoves, numMoves)
 		})
 	}
 }

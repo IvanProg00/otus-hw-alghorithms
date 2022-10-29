@@ -1,11 +1,11 @@
 package array
 
-const factor = 2
-
 type FactorArray[T any] struct {
 	arr  []T
 	size int
 }
+
+const factor = 2
 
 func NewFactorArray[T any]() Array[T] {
 	return &FactorArray[T]{}
