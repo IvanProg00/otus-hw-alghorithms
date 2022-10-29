@@ -35,9 +35,7 @@ func TestPrimes(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
-
-			require.Equal(tt.expected, Primes(tt.n))
+			require.Equal(t, tt.expected, Primes(tt.n))
 		})
 	}
 }

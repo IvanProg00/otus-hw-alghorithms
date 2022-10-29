@@ -15,7 +15,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
+          go-version: 1.19
 
       - uses: actions/cache@v3
         with:
@@ -27,5 +27,5 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Test
-        run: go test -v -cover -timeout 10m -parallel 2 ./...
+        run: go test -v -cover -timeout 10m ./...
         working-directory: ${{ github.head_ref }}

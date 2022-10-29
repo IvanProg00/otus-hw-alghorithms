@@ -30,9 +30,8 @@ func TestRecursive(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
-			require.Equal(tt.expected, Recursive(tt.i))
+			require.Equal(t, tt.expected, Recursive(tt.i))
 		})
 	}
 }
@@ -44,9 +43,8 @@ func TestIter(t *testing.T) {
 		i, tt := i, tt
 		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
 			t.Parallel()
-			require := require.New(t)
 
-			require.Equal(tt.expected, Iter(tt.i))
+			require.Equal(t, tt.expected, Iter(tt.i))
 		})
 	}
 }
