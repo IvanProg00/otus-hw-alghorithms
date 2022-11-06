@@ -20,33 +20,10 @@ func NewTree[T Number]() *Tree[T] {
 }
 
 func (t *Tree[T]) Insert(val T) {
-	if t.root == nil {
-		t.root = &Node[T]{
-			value: []T{val},
-		}
-
-		return
-	}
-
-	t.root.insert(val)
+	t.root = insert(t.root, val)
 }
 
-func (n *Node[T]) insert(val T) {
-	if len(n.value) == 0 || n.value[0] == val {
-		n.value = append(n.value, val)
-		return
-	}
-
-	nodeVal := n.value[0]
-
-	if val > nodeVal {
-		n.right = setNodeValue(n.right, val)
-	} else {
-		n.left = setNodeValue(n.left, val)
-	}
-}
-
-func setNodeValue[T Number](curr *Node[T], val T) *Node[T] {
+func insert[T Number](curr *Node[T], val T) *Node[T] {
 	if curr != nil && len(curr.value) != 0 {
 		currVal := curr.value[0]
 
@@ -54,9 +31,9 @@ func setNodeValue[T Number](curr *Node[T], val T) *Node[T] {
 		case val == currVal:
 			curr.value = append(curr.value, val)
 		case val > currVal:
-			curr.right = setNodeValue(curr.right, val)
+			curr.right = insert(curr.right, val)
 		default:
-			curr.left = setNodeValue(curr.left, val)
+			curr.left = insert(curr.left, val)
 		}
 
 		return curr
