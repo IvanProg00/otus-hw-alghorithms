@@ -1,6 +1,10 @@
 package tree
 
-import "golang.org/x/exp/constraints"
+import (
+	"errors"
+
+	"golang.org/x/exp/constraints"
+)
 
 type Number interface {
 	constraints.Float | constraints.Integer
@@ -14,6 +18,8 @@ type Node[T Number] struct {
 	left, right *Node[T]
 	value       []T
 }
+
+var ErrNotFound = errors.New("not found")
 
 func NewTree[T Number]() *Tree[T] {
 	return &Tree[T]{}
@@ -41,5 +47,26 @@ func insert[T Number](curr *Node[T], val T) *Node[T] {
 
 	return &Node[T]{
 		value: []T{val},
+	}
+}
+
+func (t *Tree[T]) Search(val T) (*Node[T], error) {
+	return search(t.root, val)
+}
+
+func search[T Number](n *Node[T], val T) (*Node[T], error) {
+	if n == nil || len(n.value) == 0 {
+		return nil, ErrNotFound
+	}
+
+	nVal := n.value[0]
+
+	switch {
+	case nVal == val:
+		return n, nil
+	case val > nVal:
+		return search(n.right, val)
+	default:
+		return search(n.left, val)
 	}
 }
