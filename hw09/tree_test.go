@@ -158,7 +158,7 @@ func TestSearch(t *testing.T) {
 	tests := []struct {
 		val  int
 		tree *Tree[int]
-		exp  Node[int]
+		exp  []int
 	}{
 		{
 			val: 5,
@@ -167,9 +167,7 @@ func TestSearch(t *testing.T) {
 					value: []int{5},
 				},
 			},
-			exp: Node[int]{
-				value: []int{5},
-			},
+			exp: []int{5},
 		},
 		{
 			val: -43,
@@ -181,9 +179,7 @@ func TestSearch(t *testing.T) {
 					},
 				},
 			},
-			exp: Node[int]{
-				value: []int{-43},
-			},
+			exp: []int{-43},
 		},
 		{
 			val: 68,
@@ -194,7 +190,7 @@ func TestSearch(t *testing.T) {
 					right: &Node[int]{value: []int{68}},
 				},
 			},
-			exp: Node[int]{value: []int{68}},
+			exp: []int{68},
 		},
 		{
 			val: 18,
@@ -205,11 +201,7 @@ func TestSearch(t *testing.T) {
 					right: &Node[int]{value: []int{13}},
 				},
 			},
-			exp: Node[int]{
-				value: []int{18},
-				left:  &Node[int]{value: []int{12}},
-				right: &Node[int]{value: []int{13}},
-			},
+			exp: []int{18},
 		},
 		{
 			val: 34,
@@ -232,10 +224,7 @@ func TestSearch(t *testing.T) {
 					},
 				},
 			},
-			exp: Node[int]{
-				value: []int{34},
-				right: &Node[int]{value: []int{36}},
-			},
+			exp: []int{34},
 		},
 	}
 
@@ -247,7 +236,7 @@ func TestSearch(t *testing.T) {
 			res, err := tt.tree.Search(tt.val)
 			require.NoError(t, err)
 			require.NotNil(t, res)
-			require.EqualValues(t, &tt.exp, res)
+			require.EqualValues(t, tt.exp, res)
 		})
 	}
 }

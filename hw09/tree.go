@@ -50,11 +50,11 @@ func insert[T Number](curr *Node[T], val T) *Node[T] {
 	}
 }
 
-func (t *Tree[T]) Search(val T) (*Node[T], error) {
+func (t *Tree[T]) Search(val T) ([]T, error) {
 	return search(t.root, val)
 }
 
-func search[T Number](n *Node[T], val T) (*Node[T], error) {
+func search[T Number](n *Node[T], val T) ([]T, error) {
 	if n == nil || len(n.value) == 0 {
 		return nil, ErrNotFound
 	}
@@ -63,7 +63,7 @@ func search[T Number](n *Node[T], val T) (*Node[T], error) {
 
 	switch {
 	case nVal == val:
-		return n, nil
+		return n.value, nil
 	case val > nVal:
 		return search(n.right, val)
 	default:
