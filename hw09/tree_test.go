@@ -20,7 +20,7 @@ func TestInsert(t *testing.T) {
 			tree: NewTree[int](),
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{5},
+					value: 5,
 				},
 			},
 		},
@@ -29,7 +29,7 @@ func TestInsert(t *testing.T) {
 			tree: &Tree[int]{},
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{8},
+					value: 8,
 				},
 			},
 		},
@@ -37,12 +37,12 @@ func TestInsert(t *testing.T) {
 			val: 13,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{13},
+					value: 13,
 				},
 			},
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{13, 13},
+					value: 13,
 				},
 			},
 		},
@@ -50,14 +50,14 @@ func TestInsert(t *testing.T) {
 			val: -8,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{1},
+					value: 1,
 				},
 			},
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{1},
+					value: 1,
 					left: &Node[int]{
-						value: []int{-8},
+						value: -8,
 					},
 				},
 			},
@@ -66,15 +66,15 @@ func TestInsert(t *testing.T) {
 			val: 58,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{44},
-					left:  &Node[int]{value: []int{36}},
+					value: 44,
+					left:  &Node[int]{value: 36},
 				},
 			},
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{44},
-					left:  &Node[int]{value: []int{36}},
-					right: &Node[int]{value: []int{58}},
+					value: 44,
+					left:  &Node[int]{value: 36},
+					right: &Node[int]{value: 58},
 				},
 			},
 		},
@@ -82,17 +82,17 @@ func TestInsert(t *testing.T) {
 			val: 13,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{18},
-					left:  &Node[int]{value: []int{12}},
+					value: 18,
+					left:  &Node[int]{value: 12},
 				},
 			},
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{18},
+					value: 18,
 					left: &Node[int]{
-						value: []int{12},
+						value: 12,
 						right: &Node[int]{
-							value: []int{13},
+							value: 13,
 						},
 					},
 				},
@@ -102,15 +102,15 @@ func TestInsert(t *testing.T) {
 			val: 36,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{4, 4},
-					left:  &Node[int]{value: []int{2}},
+					value: 4,
+					left:  &Node[int]{value: 2},
 					right: &Node[int]{
-						value: []int{18, 18},
+						value: 18,
 						right: &Node[int]{
-							value: []int{28},
+							value: 28,
 							right: &Node[int]{
-								value: []int{45},
-								left:  &Node[int]{value: []int{34}},
+								value: 45,
+								left:  &Node[int]{value: 34},
 							},
 						},
 					},
@@ -118,18 +118,18 @@ func TestInsert(t *testing.T) {
 			},
 			expTree: Tree[int]{
 				root: &Node[int]{
-					value: []int{4, 4},
-					left:  &Node[int]{value: []int{2}},
+					value: 4,
+					left:  &Node[int]{value: 2},
 					right: &Node[int]{
-						value: []int{18, 18},
+						value: 18,
 						right: &Node[int]{
-							value: []int{28},
+							value: 28,
 							right: &Node[int]{
-								value: []int{45},
+								value: 45,
 								left: &Node[int]{
-									value: []int{34},
+									value: 34,
 									right: &Node[int]{
-										value: []int{36},
+										value: 36,
 									},
 								},
 							},
@@ -158,73 +158,84 @@ func TestSearch(t *testing.T) {
 	tests := []struct {
 		val  int
 		tree *Tree[int]
-		exp  []int
+		exp  Node[int]
 	}{
 		{
 			val: 5,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{5},
+					value: 5,
 				},
 			},
-			exp: []int{5},
+			exp: Node[int]{
+				value: 5,
+			},
 		},
 		{
 			val: -43,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{-15},
+					value: -15,
 					left: &Node[int]{
-						value: []int{-43},
+						value: -43,
 					},
 				},
 			},
-			exp: []int{-43},
+			exp: Node[int]{
+				value: -43,
+			},
 		},
 		{
 			val: 68,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{44},
-					left:  &Node[int]{value: []int{21}},
-					right: &Node[int]{value: []int{68}},
+					value: 44,
+					left:  &Node[int]{value: 21},
+					right: &Node[int]{value: 68},
 				},
 			},
-			exp: []int{68},
+			exp: Node[int]{value: 68},
 		},
 		{
 			val: 18,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{18},
-					left:  &Node[int]{value: []int{12}},
-					right: &Node[int]{value: []int{13}},
+					value: 18,
+					left:  &Node[int]{value: 12},
+					right: &Node[int]{value: 13},
 				},
 			},
-			exp: []int{18},
+			exp: Node[int]{
+				value: 18,
+				left:  &Node[int]{value: 12},
+				right: &Node[int]{value: 13},
+			},
 		},
 		{
 			val: 34,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{4, 4},
-					left:  &Node[int]{value: []int{2}},
+					value: 4,
+					left:  &Node[int]{value: 2},
 					right: &Node[int]{
-						value: []int{18, 18},
+						value: 18,
 						right: &Node[int]{
-							value: []int{28},
+							value: 28,
 							right: &Node[int]{
-								value: []int{45},
+								value: 45,
 								left: &Node[int]{
-									value: []int{34},
-									right: &Node[int]{value: []int{36}},
+									value: 34,
+									right: &Node[int]{value: 36},
 								},
 							},
 						},
 					},
 				},
 			},
-			exp: []int{34},
+			exp: Node[int]{
+				value: 34,
+				right: &Node[int]{value: 36},
+			},
 		},
 	}
 
@@ -236,7 +247,7 @@ func TestSearch(t *testing.T) {
 			res, err := tt.tree.Search(tt.val)
 			require.NoError(t, err)
 			require.NotNil(t, res)
-			require.EqualValues(t, tt.exp, res)
+			require.EqualValues(t, tt.exp, *res)
 		})
 	}
 }
@@ -260,21 +271,21 @@ func TestSearch_error(t *testing.T) {
 			val: 3,
 			tree: &Tree[int]{
 				root: &Node[int]{
-					value: []int{14},
+					value: 14,
 					left: &Node[int]{
-						value: []int{-5},
+						value: -5,
 						right: &Node[int]{
-							value: []int{8},
+							value: 8,
 							left: &Node[int]{
-								value: []int{4},
+								value: 4,
 								left: &Node[int]{
-									value: []int{0},
-									right: &Node[int]{value: []int{2}},
+									value: 0,
+									right: &Node[int]{value: 2},
 								},
 							},
 						},
 					},
-					right: &Node[int]{value: []int{18}},
+					right: &Node[int]{value: 18},
 				},
 			},
 		},
@@ -288,6 +299,238 @@ func TestSearch_error(t *testing.T) {
 			res, err := tt.tree.Search(tt.val)
 			require.ErrorIs(t, err, ErrNotFound)
 			require.Nil(t, res)
+		})
+	}
+}
+
+func TestRemove(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		val     int
+		tree    *Tree[int]
+		expTree Tree[int]
+	}{
+		{
+			val: 79,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 79,
+				},
+			},
+			expTree: Tree[int]{},
+		},
+		{
+			val: 94,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 45,
+					right: &Node[int]{
+						value: 94,
+					},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 45,
+				},
+			},
+		},
+		{
+			val: -78,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 4,
+					left: &Node[int]{
+						value: -78,
+					},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 4,
+				},
+			},
+		},
+		{
+			val: 36,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 1,
+					left:  &Node[int]{value: -89},
+					right: &Node[int]{value: 36},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 1,
+					left:  &Node[int]{value: -89},
+				},
+			},
+		},
+		{
+			val: -43,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 54,
+					left: &Node[int]{
+						value: -43,
+						right: &Node[int]{
+							value: 0,
+						},
+					},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 54,
+					left:  &Node[int]{value: 0},
+				},
+			},
+		},
+		{
+			val: 23,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 94,
+					left: &Node[int]{
+						value: 23,
+						left: &Node[int]{
+							value: 5,
+						},
+					},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 94,
+					left:  &Node[int]{value: 5},
+				},
+			},
+		},
+		{
+			val: 50,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 50,
+					left:  &Node[int]{value: 40},
+					right: &Node[int]{
+						value: 70,
+						left:  &Node[int]{value: 60},
+						right: &Node[int]{value: 80},
+					},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 60,
+					left:  &Node[int]{value: 40},
+					right: &Node[int]{
+						value: 70,
+						right: &Node[int]{value: 80},
+					},
+				},
+			},
+		},
+		{
+			val: 50,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 50,
+					left:  &Node[int]{value: 40},
+					right: &Node[int]{
+						value: 70,
+						left:  &Node[int]{value: 60},
+						right: &Node[int]{value: 80},
+					},
+				},
+			},
+			expTree: Tree[int]{
+				root: &Node[int]{
+					value: 60,
+					left:  &Node[int]{value: 40},
+					right: &Node[int]{
+						value: 70,
+						right: &Node[int]{value: 80},
+					},
+				},
+			},
+		},
+	}
+
+	for i, tt := range tests {
+		i, tt := i, tt
+		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
+
+			err := tt.tree.Remove(tt.val)
+			require.NoError(t, err)
+			require.NotNil(t, tt.tree)
+			require.EqualValues(t, tt.expTree, *tt.tree)
+		})
+	}
+}
+
+func TestRemove_error(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		val    int
+		tree   *Tree[int]
+		expErr error
+	}{
+		{
+			val: 27,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 29,
+				},
+			},
+			expErr: ErrNotFound,
+		},
+		{
+			val: 49,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 24,
+					right: &Node[int]{
+						value: 50,
+					},
+				},
+			},
+			expErr: ErrNotFound,
+		},
+		{
+			val: 39,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 105,
+					left: &Node[int]{
+						value: 31,
+					},
+				},
+			},
+			expErr: ErrNotFound,
+		},
+		{
+			val: 11,
+			tree: &Tree[int]{
+				root: &Node[int]{
+					value: 10,
+					left:  &Node[int]{value: 11},
+				},
+			},
+			expErr: ErrNotFound,
+		},
+	}
+
+	for i, tt := range tests {
+		i, tt := i, tt
+		t.Run(fmt.Sprintf("test-%d", i), func(t *testing.T) {
+			t.Parallel()
+
+			err := tt.tree.Remove(tt.val)
+			require.ErrorIs(t, err, tt.expErr)
 		})
 	}
 }
